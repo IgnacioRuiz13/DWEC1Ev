@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        let equipo_A = new Array("Real Madrid","Barcelona","Valencia");
+        let equipo_B = new Array("Bilbao","Atletico Madrid","Sevilla");
+
+        let liga = equipo_A.concat(equipo_B);
+        console.log(liga);
+
+        document.write(liga.join("<br>"));
+        document.write("<br>");
+
+        equipo_A.reverse();
+        document.write(equipo_A);
+        document.write("<br>");
+
+        liga.shift();
+        document.write(liga);
+        document.write("<br>");
+
+        liga.pop();
+        document.write(liga);
+        document.write("<br>");
+    </script>
+</body>
+</html>

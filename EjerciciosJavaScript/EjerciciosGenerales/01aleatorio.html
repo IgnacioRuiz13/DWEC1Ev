@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="text/javascript">
+
+        const numeroAleatorio = (max) => {
+            let res = Math.floor(Math.random() * (max+1));
+            return res;
+        }
+
+        let resul = numeroAleatorio(99999);
+        document.write("Numero aleatorio: " + resul + "<br>");
+
+        let premiosGanadores = new Array(10);
+
+        for(let i=0;i<premiosGanadores.length;i++){
+           premiosGanadores[i] = numeroAleatorio(99999);
+        }
+
+        for(let i=0;i<premiosGanadores.length;i++){
+            document.write(`Premio ${i+1} : ` + premiosGanadores[i] + "<br>");
+        }
+
+
+    </script>
+</body>
+</html>
