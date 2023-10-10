@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        class coche{
+            constructor(marca,modelo,precio,anhomatriculacion,url){
+                this._marca = marca;
+                this._modelo = modelo;
+                this._precio = precio;
+                this._anhomatriculacion = anhomatriculacion;
+                this._url = url;
+            }
+        }
+
+        function pintaCoches (coche){
+            document.write(coche._marca + " ");
+            document.write(coche._modelo + " ");
+            document.write(coche._precio + " ");
+            document.write(coche._anhomatriculacion + " ");
+            //document.write("<img src=" + coche._url + "> </img>");
+            document.write(`<img src=${coche._url} > </img>`);
+            document.write("<br>");
+        }
+        
+        const coche1 = new coche("Ferrari","Papamovil",90000,2000,"./img/coche1.jfif");
+        const coche2 = new coche("HootWheels","Truck",30,2018,"./img/coche2.jfif");
+        const coche3 = new coche("Ferrari","296 GTS",80000,2015,"./img/coche3.jfif");
+        const coche4 = new coche("Ford","Leon",20000,2010,"./img/coche4.jfif");
+        const coche5 = new coche("PicaPiedra","PiedraDura",200,2,"./img/coche5.jfif");
+
+        let listaCoches = new Array(coche1,coche2,coche3,coche4,coche5);
+
+        listaCoches.forEach(coche => {
+            console.log(coche);
+            pintaCoches(coche);
+        });
+    </script>
+</body>
+</html>
