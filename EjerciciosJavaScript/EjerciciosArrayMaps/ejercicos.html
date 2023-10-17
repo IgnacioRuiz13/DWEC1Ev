@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script type="text/javascript">
+        class persona{
+            constructor(nombre,apellido,poblacion,edad,estudio,carnetCond){
+                this._nombre = nombre;
+                this._apellido = apellido;
+                this._poblacion = poblacion;
+                this._edad = edad;
+                this._estudio = estudio;
+                this._carnetCond = carnetCond;
+            }
+
+            get edad(){
+                return this._edad;
+            }
+
+            set edad(edad){
+                this._edad = edad;
+            }
+
+            get estudio(){
+                return this._estudio;
+            }
+
+            set estudio(estudio){
+                this._estudio = estudio;
+            }
+        }
+
+        function comprobarDatos(persona) {
+            if(typeof persona._nombre !== 'string') {
+                alert("El atributo nombre no es un texto");
+            }
+            if(typeof persona._apellido !== 'string') {
+                alert("El atributo apellido no es un texto");
+            }
+            if(typeof persona._poblacion !== 'string') {
+                alert("El atributo poblacion no es un texto");
+            }
+            if(typeof persona._edad !== 'number') {
+                alert("El atributo edad no es un numero");
+            }
+            if(typeof persona._estudio !== 'string') {
+                alert("El atributo estudio no es un texto");
+            }
+            if(typeof persona._carnetCond !== 'boolean') {
+                alert("El atributo carnet Conducir no es un texto");
+            }
+        }
+
+        function pintarPersona (persona){
+            document.write(persona._nombre + " - ");
+            document.write(persona._apellido + " - ");
+            document.write(persona._poblacion + " - ");
+            document.write(persona._edad + " - ");
+            document.write(persona._estudio + " - ");
+            document.write(persona._carnetCond);
+            document.write("<br>");
+        }
+
+        const persona1 = new persona("Carlos","Recas","Toledo",21,"ASIR",true);
+        const persona2 = new persona("Ines","Perez","Toledo",25,"DAW",false);
+        const persona3 = new persona("Robert","Openhaimer","Madird",15,"ESO",true);
+        const persona4 = new persona("Mikel","Myllers","Madird",46,"DAW",false);
+
+        let listaPersonas = new Array(persona1,persona2,persona3,persona4);
+
+        // listaPersonas.forEach(persona => {
+        //     comprobarDatos(persona);
+        //     pintarPersona(persona);
+        // });
+        
+        let mapaPersonas = new Map();
+        mapaPersonas.set("01234567A",persona1);
+        mapaPersonas.set("76543210F",persona2);
+        mapaPersonas.set("12341234U",persona3);
+        mapaPersonas.set("03690369Z",persona4);
+
+        // mapaPersonas.forEach((persona ,dni) => {
+        //     document.write(dni + " - ");
+        //     pintarPersona(persona);
+        // });
+
+        document.write('<table border="1"> ');
+        document.write("<thead> ");
+        document.write("    <tr>");
+        document.write("       <th>DNI</th>");
+        document.write("       <th>Nombre</th>");
+        document.write("       <th>Apellido</th>");
+        document.write("       <th>Poblacion</th>");
+        document.write("       <th>Edad</th>");
+        document.write("       <th>Estudio</th>");
+        document.write("       <th>Carnet de Conducir</th>");
+        document.write("    </tr>");
+        document.write("</thead>");
+      
+        document.write("<tbody>");
+        mapaPersonas.forEach((persona ,dni) => {
+            document.write("    <tr>");
+            document.write(`    <th>${dni}</th>`);
+            document.write(`    <th>${persona._nombre}</th>`);
+            document.write(`    <th>${persona._apellido}</th>`);
+            document.write(`    <th>${persona._poblacion}</th>`);
+            document.write(`    <th>${persona._edad}</th>`);
+            document.write(`    <th>${persona._estudio}</th>`);
+            document.write(`    <th>${persona._carnetCond}</th>`);
+            document.write("    </tr>");
+        });
+        document.write("</tbody>");
+        document.write('</table> ');
+
+
+    </script>
+</body>
+</html>
