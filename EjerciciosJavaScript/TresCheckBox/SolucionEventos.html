@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="formulario">
+        <p>
+            <input type="checkbox" id="ckb1" name="ckb1" class="ckb1">
+            CheckBox 1
+        </p>
+        <p>
+            <input type="checkbox" id="ckb2" name="ckb2" class="ckb2">
+            CheckBox 2
+        </p>
+        
+        <p>
+            <input type="checkbox" id="ckb3" name="ckb3" class="ckb3">
+            CheckBox 3
+        </p>
+    </form>
+
+    <script>
+        const formulario = document.querySelector(".formulario");
+        const check1 = document.querySelector(".ckb1");
+        const check2 = document.querySelector(".ckb2");
+        const check3 = document.querySelector(".ckb3");
+
+        formulario.addEventListener("click",(e) => {
+            
+            if(e.target.classList.contains('ckb1')){
+                console.log("Bien1");
+                
+            }
+
+            if(e.target.classList.contains('ckb2')){
+                console.log("Bien2");
+            }
+
+            if(e.target.classList.contains('ckb3')){
+                console.log("Bien3");
+            }
+
+            
+            e.stopPropagation();
+        });
+
+    </script>
+</body>
+</html>
