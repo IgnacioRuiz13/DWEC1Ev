@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="03-estilo.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <h1>Banco No Amigo</h1>
+        <form id="formulario" action="procesar.php">
+            <div class="form-group">
+                <label for="user">Usuario:</label>
+                <input type="text" name="user" id="user" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="passwd">Contraseña:</label>
+                <input type="password" name="passwd" id="passwd">
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="fechaNac">Indica tu fecha de nacimiento para más seguridad:</label>
+                <input type="date" name="fechaNac" id="fechaNac">
+                <p class="error-feedback"></p>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <p><input type="radio" name="Dinero" id="DineroTarjeta">Tarjeta de credito</p>
+                    <label for="Tarjeta"></label>
+                    <input type="text" name="Tarjeta" id="Tarjeta">
+                    <p class="error-feedback"></p>
+                </div>
+                <div class="form-group">
+                    <p><input type="radio" name="Dinero" id="DineroCuenta">Numero de cuenta </p>
+                    <label for="Cuenta"></label>
+                    <input type="text" name="Cuenta" id="Cuenta">
+                    <p class="error-feedback"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="condiciones">Politica de condiciones de uso:</label>
+                <input type="checkbox" name="condiciones" id="condiciones">
+                <p class="error-feedback"></p>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Pciber">Publicidad de ciberseguridad para tu cuenta:</label>
+                <input type="checkbox" name="Pciber" id="Pciber">
+                <br>
+                <label for="Pcompras">Publicidad de compras seguras:</label>
+                <input type="checkbox" name="Pcompras" id="Pcompras">
+                <br>
+                <label for="Pbolsa">Publicidad de modificaciones en bolsa:</label>
+                <input type="checkbox" name="Pbolsa" id="Pbolsa">
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="Martodo">Marcar todo</button>
+                <button type="button" id="Destodo">Desseleccionar todo</button>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="btn-submit">Enviar</button>
+                <button type="reset">Restablecer</button>
+            </div>
+
+
+        </form>
+    </div>
+    <script>
+        const Pciber = document.querySelector("#Pciber");
+        const Pcompras = document.querySelector("#Pcompras");
+        const Pbolsa = document.querySelector("#Pbolsa");
+        const Martodo = document.querySelector("#Martodo");
+        const Destodo = document.querySelector("#Destodo");
+        const DineroTarjeta = document.querySelector("#DineroTarjeta");
+        const DineroCuenta = document.querySelector("#DineroCuenta");
+
+        Martodo.addEventListener("click", (e) => {
+            Pciber.checked = true;
+            Pcompras.checked = true;
+            Pbolsa.checked = true;
+
+        });
+
+        Destodo.addEventListener("click", (e) => {
+            Pciber.checked = false;
+            Pcompras.checked = false;
+            Pbolsa.checked = false;
+
+        });
+
+        DineroTarjeta.addEventListener("click", (e) => {
+            console.log("Se ha marcado una DineroTarjeta")
+
+        });
+
+        DineroCuenta.addEventListener("click", (e) => {
+            console.log("Se ha marcado una DineroCuenta")
+
+        });
+
+
+        window.addEventListener("load", function () {
+            const formulario = document.querySelector("#formulario");
+            const usuario = document.querySelector("#user");
+            const passwd = document.querySelector("#passwd");
+            const fechaNac = document.querySelector("#fechaNac");
+            const tarjeta = document.querySelector("#Tarjeta");
+            const cuenta = document.querySelector("#Cuenta");
+            const condiciones = document.querySelector("#condiciones");
+            let valido = true;
+
+            formulario.addEventListener("submit", evento => {
+                evento.preventDefault();
+                evento.stopPropagation();
+                valido = true;
+
+                if (!validaUser(usuario)) {
+                    valido = false;
+                };
+
+                if (!validaPasswd(passwd)) {
+                    valido = false;
+                }
+
+                if (!validaFecha(fechaNac)) {
+                    valido = false;
+                };
+
+                if (!validaTarjeta(tarjeta)) {
+                    valido = false;
+                };
+
+                if (!validaCuenta(cuenta)) {
+                    valido = false;
+                };
+
+                if (!validaCheck(condiciones)) {
+                    valido = false;
+                };
+
+                if (valido) {
+                    formulario.submit();
+                }
+            });
+
+            function validaUser(e1) {
+                if (!e1.value) {
+                    marcarError(e1, "No has introducido usuario");
+                    return false;
+                } else {
+                    marcarValido(e1);
+                    return true;
+                };
+            };
+
+            function validaPasswd(e2) {
+                if (e2.value.length < 7) {
+                    marcarError(e2, "El password debe tener 7 caracteres");
+                    return false;
+                } else {
+                    marcarValido(e2);
+                    return true;
+                };
+            };
+
+            function validaTarjeta(e2) {
+                if (e2.value.length < 13 || e2.value.length > 18) {
+                    marcarError(e2, "Numero de tarjeta de credito no valido");
+                    return false;
+                } else {
+                    marcarValido(e2);
+                    return true;
+                };
+            };
+
+            function validaCuenta(e2) {
+                if (e2.value.length < 20 || e2.value.length > 21) {
+                    marcarError(e2, "El numero de cuenta no valido");
+                    return false;
+                } else {
+                    marcarValido(e2);
+                    return true;
+                };
+            };
+
+            function validaCheck(el) {
+                if (!el.checked) {
+                    marcarError(el, "Tienes que aceptar las condiciones");
+                    return false;
+                } else {
+                    marcarValido(el);
+                    return true;
+                };
+            };
+
+            function validaFecha(el) {
+                if (!el.value) {
+                    marcarError(el, "No has introducido fecha");
+                    return false;
+                } else {
+                    marcarValido(el);
+                    return true;
+                };
+            };
+
+            function marcarError(el, mensaje) {
+                el.parentNode.querySelector(".error-feedback").textContent = mensaje;
+                el.parentNode.classList.add("error");
+            };
+
+            function marcarValido(el) {
+                el.parentNode.querySelector(".error-feedback").textContent = "";
+                el.parentNode.classList.remove("error");
+            };
+        });
+    </script>
+</body>
+
+</html>

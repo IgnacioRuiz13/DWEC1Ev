@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="03-estilo.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <form action="./enviar.php" id="formulario">
+            <div class="form-group">
+                <label for="cp">Código Postal:</label>
+                <input type="text" name="cp" id="cp" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="NEntero">Numero Entero:</label>
+                <input type="text" name="NEntero" id="NEntero" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="NReal">Numero Real:</label>
+                <input type="text" name="NReal" id="NReal" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="NTelefono">Numero de Telefono:</label>
+                <input type="text" name="NTelefono" id="NTelefono" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="NTelefonoIntrn">Numero de Telefono internacional:</label>
+                <input type="text" name="NTelefonoIntrn" id="NTelefonoIntrn" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="Fecha">Fecha:</label>
+                <input type="text" name="Fecha" id="Fecha" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" name="email" id="email" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="DNI">DNI:</label>
+                <input type="text" name="DNI" id="DNI" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="URL">URL:</label>
+                <input type="text" name="URL" id="URL" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="Tarjeta">Tarjeta de credito:</label>
+                <input type="text" name="Tarjeta" id="Tarjeta" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <label for="passwd">Crontraseña:</label>
+                <input type="password" name="passwd" id="passwd" autofocus>
+                <p class="error-feedback"></p>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="btn-submit">Enviar</button>
+                <button type="reset">Restablecer</button>
+            </div>
+
+        </form>
+    </div>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const formulario = document.querySelector("#formulario");
+
+            const cp = document.querySelector("#cp");
+            const NEntero = document.querySelector("#NEntero");
+            const NReal = document.querySelector("#NReal");
+            const NTelefono = document.querySelector("#NTelefono");
+            const NTelefonoIntrn = document.querySelector("#NTelefonoIntrn");
+
+            const Fecha = document.querySelector("#Fecha");
+            const email = document.querySelector("#email");
+            const DNI = document.querySelector("#DNI");
+            const URL = document.querySelector("#URL");
+            const Tarjeta = document.querySelector("#Tarjeta");
+            const passwd = document.querySelector("#passwd");
+
+            formulario.addEventListener("submit", function (evento) {
+                evento.preventDefault();
+                evento.stopPropagation();
+
+                let valido = true;
+
+                if (!validoEmail(email)) {
+                    valido = false;
+                }
+
+                if (!validaCP(cp)) {
+                    valido = false;
+                }
+
+                if (!validaNEntero(NEntero)) {
+                    valido = false;
+                }
+
+                if (valido) {
+                    this.submit();
+                }
+
+                function validaCP(el) {
+                    const erCP = /^[0-5][0-9]{4}$/;
+                    const cpvalue = el.value.trim();
+                    if (cpvalue.match(erCP)) {
+                        marcarValido(el);
+                        return true;
+                    } else {
+                        marcarError(el, "El código postal no es correcto");
+                        return false;
+                    }
+                }
+
+                function validaNEntero(el) {
+                    const er = /^[0-5][0-9]{4}$/;
+                    const cpvalue = el.value.trim();
+                    if (cpvalue.match(er)) {
+                        marcarValido(el);
+                        return true;
+                    } else {
+                        marcarError(el, "El código postal no es correcto");
+                        return false;
+                    }
+                }
+
+                function validoEmail(el) {
+                    const erMail = /^[-/w.%+]{1,64}@(?:[A-Z0-9]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+                    if (erMail.test(el.value.trim())) {
+                        marcarValido(el);
+                        return true;
+                    } else {
+                        marcarError(el, "El email no tiene formato válido");
+                        return false;
+                    }
+                }
+
+                function marcarError(el, mensaje) {
+                    el.parentNode.querySelector(".error-feedback").textContent = mensaje;
+                    el.parentNode.classList.add("error");
+                };
+
+                function marcarValido(el) {
+                    el.parentNode.querySelector(".error-feedback").textContent = "";
+                    el.parentNode.classList.remove("error");
+                };
+
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <form class="formulario">
         <p>
@@ -15,7 +17,7 @@
             <input type="checkbox" id="ckb2" name="ckb2" class="ckb2">
             CheckBox 2
         </p>
-        
+
         <p>
             <input type="checkbox" id="ckb3" name="ckb3" class="ckb3">
             CheckBox 3
@@ -24,29 +26,32 @@
 
     <script>
         const formulario = document.querySelector(".formulario");
-        const check1 = document.querySelector(".ckb1");
-        const check2 = document.querySelector(".ckb2");
-        const check3 = document.querySelector(".ckb3");
+        const check1 = document.querySelector("#ckb1");
+        const check2 = document.querySelector("#ckb2");
+        const check3 = document.querySelector("#ckb3");
 
-        formulario.addEventListener("click",(e) => {
-            
-            if(e.target.classList.contains('ckb1')){
-                console.log("Bien1");
-                
-            }
-
-            if(e.target.classList.contains('ckb2')){
-                console.log("Bien2");
-            }
-
-            if(e.target.classList.contains('ckb3')){
-                console.log("Bien3");
-            }
-
-            
-            e.stopPropagation();
+        check1.addEventListener("click", (e) => {
+            if (check2.checked && check3.checked) {
+                check2.checked = false;
+                check3.checked = false;
+            } 
         });
 
+        check2.addEventListener("click", (e) => {
+            if (check1.checked && check3.checked) {
+                check1.checked = false;
+                check3.checked = false;
+            } 
+        });
+
+        check3.addEventListener("click", (e) => {
+            if (check2.checked && check1.checked) {
+                check2.checked = false;
+                check1.checked = false;
+            } 
+        });
+       
     </script>
 </body>
+
 </html>
