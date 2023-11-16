@@ -1,0 +1,104 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>DOM b�sico y atributos XHTML</title>
+
+</head>
+
+<body>
+    <p id="contenidos_1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_1" href="#">Ocultar contenidos</a>
+    <br />
+    <p id="contenidos_2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_2" href="#">Ocultar contenidos</a>
+    <br />
+    <p id="contenidos_3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_3" href="#">Ocultar contenidos</a>
+    <script>
+        /*  A partir de la página web proporcionada, completar el código JavaScript para que:
+ 
+ 1.   Cuando se pinche sobre el primer enlace, se oculte su sección relacionada
+ 2.   Cuando se vuelva a pinchar sobre el mismo enlace, se muestre otra vez esa sección de contenidos
+ 3.   Completar el resto de enlaces de la página para que su comportamiento sea idéntico al del primer enlace
+ 4.   Cuando una sección se oculte, debe cambiar el mensaje del enlace asociado (pista: textContent);
+ 
+  */
+
+        window.addEventListener("load", e => {
+
+            const cont1 = document.querySelector("#enlace_1");
+            const cont2 = document.querySelector("#enlace_2");
+            const cont3 = document.querySelector("#enlace_3");
+            const contenido1 = document.querySelector("#contenidos_1");
+            const contenido2 = document.querySelector("#contenidos_2");
+            const contenido3 = document.querySelector("#contenidos_3");
+            const textOld1 = contenido1.innerHTML;
+            const textOld2 = contenido2.innerHTML;
+            const textOld3 = contenido3.innerHTML;
+
+            cont1.addEventListener("click", despliega1);
+            cont2.addEventListener("click", despliega2);
+            cont3.addEventListener("click", despliega3);
+
+            function despliega1(e) {
+                e.preventDefault();
+                const textNew = " "
+                if (contenido1.innerHTML == textNew) {
+                    contenido1.innerHTML = textOld1;
+                    cont1.textContent = "Ocultar contenido"
+                } else {
+                    contenido1.innerHTML = textNew;
+                    cont1.textContent = "Mostrar contenido"
+                }
+            }
+
+            function despliega2(e) {
+                e.preventDefault();
+                const textNew = " "
+                if (contenido2.innerHTML == textNew) {
+                    contenido2.innerHTML = textOld2;
+                    cont2.textContent = "Ocultar contenido"
+                } else {
+                    contenido2.innerHTML = textNew;
+                    cont2.textContent = "Mostrar contenido"
+                }
+            }
+
+            function despliega3(e) {
+                e.preventDefault();
+                const textNew = " "
+                if (contenido3.innerHTML == textNew) {
+                    contenido3.innerHTML = textOld3;
+                    cont3.textContent = "Ocultar contenido"
+                } else {
+                    contenido3.innerHTML = textNew;
+                    cont3.textContent = "Mostrar contenido"
+                }
+            }
+        });
+
+        function muestraOculta() {
+
+        }
+    </script>
+</body>
+
+</html>

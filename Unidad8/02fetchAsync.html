@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <h1>Ajax con XMLHttpRequest JSON</h1>
+        <div class="contenido">
+
+        </div>
+        <button id="btn">GET</button>
+    </div>
+
+    <script>
+        const contenido = document.querySelector(".contenido");
+        const btn = document.getElementById("btn");
+        const url = './user.json'
+        let num = 0;
+
+        async function fetchUserJSON() {
+            const response = await fetch(url);
+            const user = await response.json();
+            return user;
+        }
+
+        btn.addEventListener("click", async e => {
+            
+            fetchUserJSON().then(users => {
+                
+                if (users) {
+                    contenido.innerHTML = '';
+
+                    let user = users[num];
+                    contenido.innerHTML = `<p>ID: ${user.id}, Nombre: ${user.nombre}, Activo: ${user.activo}</p>`;
+                    console.log(user.nombre );
+                    console.log(user.id);
+                    
+                }
+                num = (num + 1) % users.length;
+            });
+            
+           /*
+            const users = await fetchUserJSON();
+
+            if (users) {
+
+                const user = users[num];
+                console.log(users[0]);
+                console.log(users[1]);
+                contenido.innerHTML += `<p>ID: ${user.id}, Nombre: ${user.nombre}</p>`;
+                console.log(user.nombre);
+            }
+
+            num = (num + 1) % users.length;
+            */
+        });
+
+    </script>
+</body>
+
+</html>
