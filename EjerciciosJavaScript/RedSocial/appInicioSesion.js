@@ -9,13 +9,13 @@ let passcoincide = false;
 async function fetchUserJSON() {
     const response = await fetch(url);
     const user = await response.json();
-    return user;
+    return user; 
 }
 
 formulario.addEventListener("submit", evento => {
     evento.preventDefault();
     evento.stopPropagation();
-    let valido = true;
+    let valido = true;  
 
     if (!validaVacio(formgmail)) {
         valido = false;
